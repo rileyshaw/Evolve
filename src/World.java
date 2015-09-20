@@ -11,14 +11,14 @@ import java.util.ArrayList;
 public class World extends BasicGame{
 
 
-    public static int horizSize = 1400;
-    public static int vertSize = 700;
+    public static int horizSize = 1800;
+    public static int vertSize = 900;
 
 
-    public double curDelta;
+    public static double curDelta;
     private static long lastFrame;
     private Image img;
-    private ArrayList<Organism> OrganismList;
+    public static ArrayList<Organism> OrganismList;
 
     public World(String gamename){
         super(gamename);
@@ -31,7 +31,6 @@ public class World extends BasicGame{
             appgc = new AppGameContainer(new World("Game"));
             appgc.setDisplayMode(horizSize, vertSize, false);
             appgc.start();
-
         }
         catch (SlickException ex)
         {
@@ -40,16 +39,16 @@ public class World extends BasicGame{
     }
     public void init(GameContainer gc) throws SlickException {
         img = new Image("res/circle.png");
-       // gc.setVSync(true);
         lastFrame = getTime();
         OrganismList = new ArrayList<>();
-        OrganismList.add(new AggressiveCircle(10,10,20));
-        OrganismList.add(new AggressiveCircle(100,500,20));
+        for(int j = 0; j < 2; j++) {
+            OrganismList.add(new AggressiveCircle(20));
+        }
     }
     public void update(GameContainer gc, int i) throws SlickException {
         curDelta = getDelta();
         for(int j = 0; j < OrganismList.size(); j++) {
-           OrganismList.get(j).move(curDelta);
+           OrganismList.get(j).move();
         }
         pollInput();
     }
@@ -57,7 +56,6 @@ public class World extends BasicGame{
         for(int i = 0; i < OrganismList.size(); i++) {
             g.fillOval((int)OrganismList.get(i).xpos, (int)OrganismList.get(i).ypos,OrganismList.get(i).size,OrganismList.get(i).size);
         }
-
     }
     public void pollInput(){
         if (Mouse.isButtonDown(0)) {

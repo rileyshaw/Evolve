@@ -4,14 +4,17 @@
 
 public class Organism {
     public int size = 10;
-    public double speed = 1;
+    public double speed = .1;
     public double xpos;
     public double ypos;
     public Organism(){
 
     }
     public Organism(int size){
+        System.out.println("her");
         this.size = size;
+        xpos = (int)(Math.random() * 1800);
+        ypos = (int)(Math.random() * 900);
     }
     public Organism(int xpos, int ypos){
         this.xpos = xpos;
@@ -22,7 +25,7 @@ public class Organism {
         this.xpos = xpos;
         this.ypos = ypos;
     }
-    public void move(double delta) {
+    public void move() {
         System.out.println("wrong method bruh");
     }
 }
