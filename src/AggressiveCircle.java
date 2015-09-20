@@ -11,17 +11,29 @@ public class AggressiveCircle extends Organism {
         this.size = size;
     }
     public AggressiveCircle(int xpos, int ypos){
-
+        this.xpos = xpos;
+        this.ypos = ypos;
     }
     public AggressiveCircle(int xpos, int ypos, int size){
-
+        this.size = size;
+        this.xpos = xpos;
+        this.ypos = ypos;
     }
-    public move() {
-        if(!curtarget){
+    public void move() {
+        if(curtarget == null){
             nextTarget();
+
+        }else{
+            if(curtarget.size > this.size){
+                nextTarget();
+                return;
+            }
+            double[] temp = PhysicsMethods.findNextMovement(this.xpos,this.ypos,curtarget.xpos,curtarget.ypos);
+            this.xpos += temp[0] * this.speed * curdelta;
+            this.ypos += temp[1]
         }
     }
-    public nextTarget() {
-
+    public Organism nextTarget() {
+        return null;
     }
 }

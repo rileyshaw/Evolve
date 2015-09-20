@@ -11,12 +11,18 @@ public class Organism {
 
     }
     public Organism(int size){
-
+        this.size = size;
     }
     public Organism(int xpos, int ypos){
-
+        this.xpos = xpos;
+        this.ypos = ypos;
     }
     public Organism(int xpos, int ypos, int size){
+        this.size = size;
+        this.xpos = xpos;
+        this.ypos = ypos;
+    }
+    public void move() {
 
     }
 }

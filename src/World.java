@@ -9,8 +9,6 @@ import org.newdawn.slick.*;
 import java.util.ArrayList;
 
 public class World extends BasicGame{
-    public double xpos = 300;
-    public double ypos = 300;
 
 
     public static int horizSize = 1400;
@@ -29,9 +27,10 @@ public class World extends BasicGame{
         try
         {
             AppGameContainer appgc;
-            appgc = new AppGameContainer(new World("Simple Slick Game"));
+            appgc = new AppGameContainer(new World("Game"));
             appgc.setDisplayMode(horizSize, vertSize, false);
             appgc.start();
+
         }
         catch (SlickException ex)
         {
@@ -40,13 +39,17 @@ public class World extends BasicGame{
     }
     public void init(GameContainer gc) throws SlickException {
         img = new Image("res/circle.png");
-        gc.setVSync(true);
+       // gc.setVSync(true);
         lastFrame = getTime();
         OrganismList = new ArrayList<>();
-        OrganismList.add(new AggressiveCircle(100));
+        OrganismList.add(new AggressiveCircle(10,10,20));
+        OrganismList.add(new AggressiveCircle(100,500,20));
     }
     public void update(GameContainer gc, int i) throws SlickException {
         curDelta = getDelta();
+        for(int j = 0; j < OrganismList.size(); j++) {
+          // OrganismList.get(i).
+        }
         pollInput();
     }
     public void render(GameContainer gc, Graphics g) throws SlickException {
@@ -59,18 +62,19 @@ public class World extends BasicGame{
         if (Mouse.isButtonDown(0)) {
             int x = Mouse.getX();
             int y = Mouse.getY();
+            System.out.println("x:" + x + " y:" + y);
         }
         if (Keyboard.isKeyDown(Keyboard.KEY_W)) {
-            ypos -= .2 * curDelta;
+            //ypos -= .2 * curDelta;
         }
         if (Keyboard.isKeyDown(Keyboard.KEY_A)) {
-            xpos -= .2 * curDelta;
+            //xpos -= .2 * curDelta;
         }
         if (Keyboard.isKeyDown(Keyboard.KEY_S)) {
-            ypos += .2 * curDelta;
+           // ypos += .2 * curDelta;
         }
         if (Keyboard.isKeyDown(Keyboard.KEY_D)) {
-            xpos += .2 * curDelta;
+           // xpos += .2 * curDelta;
         }
     }
     private static long getTime() {
