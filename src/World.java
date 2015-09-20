@@ -26,6 +26,7 @@ public class World extends BasicGame{
     public static void main(String[] args){
         try
         {
+            PhysicsMethods.findDistance(0,0,500,200);
             AppGameContainer appgc;
             appgc = new AppGameContainer(new World("Game"));
             appgc.setDisplayMode(horizSize, vertSize, false);
@@ -48,7 +49,7 @@ public class World extends BasicGame{
     public void update(GameContainer gc, int i) throws SlickException {
         curDelta = getDelta();
         for(int j = 0; j < OrganismList.size(); j++) {
-          // OrganismList.get(i).
+           OrganismList.get(j).move(curDelta);
         }
         pollInput();
     }

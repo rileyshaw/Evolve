@@ -22,7 +22,7 @@ public class Organism {
         this.xpos = xpos;
         this.ypos = ypos;
     }
-    public void move() {
-
+    public void move(double delta) {
+        System.out.println("wrong method bruh");
     }
 }
