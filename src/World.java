@@ -1,21 +1,26 @@
 /**
  * Created by Riley Shaw on 9/6/2015.
  */
-import org.lwjgl.LWJGLException;
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.input.Mouse;
-import org.lwjgl.opengl.Display;
-import org.lwjgl.opengl.DisplayMode;
 import org.lwjgl.Sys;
-import org.lwjgl.opengl.GL11;
 import org.newdawn.slick.*;
+
+import java.util.ArrayList;
 
 public class World extends BasicGame{
     public double xpos = 300;
     public double ypos = 300;
+
+
+    public static int horizSize = 1400;
+    public static int vertSize = 700;
+
+
     public double curDelta;
     private static long lastFrame;
     private Image img;
+    private ArrayList<Organism> OrganismList;
 
     public World(String gamename){
         super(gamename);
@@ -25,7 +30,7 @@ public class World extends BasicGame{
         {
             AppGameContainer appgc;
             appgc = new AppGameContainer(new World("Simple Slick Game"));
-            appgc.setDisplayMode(640, 480, false);
+            appgc.setDisplayMode(horizSize, vertSize, false);
             appgc.start();
         }
         catch (SlickException ex)
@@ -35,15 +40,20 @@ public class World extends BasicGame{
     }
     public void init(GameContainer gc) throws SlickException {
         img = new Image("res/circle.png");
+        gc.setVSync(true);
         lastFrame = getTime();
+        OrganismList = new ArrayList<>();
+        OrganismList.add(new AggressiveCircle(100));
     }
     public void update(GameContainer gc, int i) throws SlickException {
-    }
-    public void render(GameContainer gc, Graphics g) throws SlickException {
         curDelta = getDelta();
         pollInput();
-        g.drawImage(img,(float)xpos,(float)ypos);
-        System.out.println(xpos + " " + ypos);
+    }
+    public void render(GameContainer gc, Graphics g) throws SlickException {
+        for(int i = 0; i < OrganismList.size(); i++) {
+            g.fillOval((int)OrganismList.get(i).xpos, (int)OrganismList.get(i).ypos,OrganismList.get(i).size,OrganismList.get(i).size);
+        }
+
     }
     public void pollInput(){
         if (Mouse.isButtonDown(0)) {
@@ -51,16 +61,16 @@ public class World extends BasicGame{
             int y = Mouse.getY();
         }
         if (Keyboard.isKeyDown(Keyboard.KEY_W)) {
-            ypos -= .6 * curDelta;
+            ypos -= .2 * curDelta;
         }
         if (Keyboard.isKeyDown(Keyboard.KEY_A)) {
-            xpos -= .1 * curDelta;
+            xpos -= .2 * curDelta;
         }
         if (Keyboard.isKeyDown(Keyboard.KEY_S)) {
-            ypos += .1 * curDelta;
+            ypos += .2 * curDelta;
         }
         if (Keyboard.isKeyDown(Keyboard.KEY_D)) {
-            xpos += .1 * curDelta;
+            xpos += .2 * curDelta;
         }
     }
     private static long getTime() {
