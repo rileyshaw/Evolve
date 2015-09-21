@@ -23,7 +23,6 @@ public class PhysicsMethods {
                 }
             }
         }
-       // System.out.println(lowestIndex);
         return World.OrganismList.get(lowestIndex);
     }
 }

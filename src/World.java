@@ -41,7 +41,7 @@ public class World extends BasicGame{
         img = new Image("res/circle.png");
         lastFrame = getTime();
         OrganismList = new ArrayList<>();
-        for(int j = 0; j < 2; j++) {
+        for(int j = 0; j < 4; j++) {
             OrganismList.add(new AggressiveCircle(20));
         }
     }

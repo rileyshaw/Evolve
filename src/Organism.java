@@ -1,3 +1,5 @@
+import org.newdawn.slick.geom.Shape;
+
 /**
  * Created by Riley Shaw on 9/6/2015.
  */
@@ -7,11 +9,11 @@ public class Organism {
     public double speed = .1;
     public double xpos;
     public double ypos;
+    public Shape hitbox;
     public Organism(){
 
     }
     public Organism(int size){
-        System.out.println("her");
         this.size = size;
         xpos = (int)(Math.random() * 1800);
         ypos = (int)(Math.random() * 900);

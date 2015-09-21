@@ -9,7 +9,6 @@ import java.util.ArrayList;
 public class AggressiveCircle extends Organism {
     private Organism curtarget;
     private ArrayList<Organism> organismList;
-    public Shape hitbox;
     public AggressiveCircle(){
         super();
         this.hitbox = new Rectangle((float)(xpos + (size/4)),(float)(ypos + (size/4)),size/2,size/2);
@@ -19,7 +18,7 @@ public class AggressiveCircle extends Organism {
         this.hitbox = new Rectangle((float)(xpos + (size/4)),(float)(ypos + (size/4)),size/2,size/2);
     }
     public AggressiveCircle(int xpos, int ypos){
-        this.organismList = World.OrganismList;
+        this.organismList = World.OrganismList;//
         this.xpos = xpos;
         this.ypos = ypos;
         this.hitbox = new Rectangle((float)(this.xpos + (size/4)),(float)(this.ypos + (size/4)),size/2,size/2);
@@ -44,9 +43,15 @@ public class AggressiveCircle extends Organism {
             this.ypos += temp[1] * this.speed * World.curDelta;
         }
         hitbox.setLocation((float)(this.xpos + (size/4)),(float)(this.ypos + (size/4)));
-
+        if(hitbox.intersects(curtarget.hitbox)) {
+            collisionMade();
+        }
     }
     public Organism nextTarget() {
         return PhysicsMethods.findClosestOrganism(this);
+    }
+    public void collisionMade() {
+        System.out.println(curtarget);
+        organismList.remove(curtarget);
     }
 }
