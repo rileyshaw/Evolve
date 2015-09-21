@@ -41,7 +41,7 @@ public class World extends BasicGame{
         img = new Image("res/circle.png");
         lastFrame = getTime();
         OrganismList = new ArrayList<>();
-        for(int j = 0; j < 4; j++) {
+        for(int j = 0; j < 3; j++) {
             OrganismList.add(new AggressiveCircle(20));
         }
     }
@@ -50,7 +50,7 @@ public class World extends BasicGame{
         for(int j = 0; j < OrganismList.size(); j++) {
            OrganismList.get(j).move();
         }
-        pollInput();
+        //pollInput();
     }
     public void render(GameContainer gc, Graphics g) throws SlickException {
         for(int i = 0; i < OrganismList.size(); i++) {
