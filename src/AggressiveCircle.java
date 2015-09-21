@@ -18,7 +18,7 @@ public class AggressiveCircle extends Organism {
         this.hitbox = new Rectangle((float)(xpos + (size/4)),(float)(ypos + (size/4)),size/2,size/2);
     }
     public AggressiveCircle(int xpos, int ypos){
-        this.organismList = World.OrganismList;
+        this.organismList = World.OrganismList;//
         this.xpos = xpos;
         this.ypos = ypos;
         this.hitbox = new Rectangle((float)(this.xpos + (size/4)),(float)(this.ypos + (size/4)),size/2,size/2);
